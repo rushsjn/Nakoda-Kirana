@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nakoda Kirana Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+  <link href="https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2024-12/kirana.jpg" rel="stylesheet">
   <style>
     :root {
       /* Light mode colors */
@@ -30,7 +30,7 @@
       transition: background-color 0.5s, color 0.5s;
     }
     .hero-section {
-      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      background: url('https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2024-12/kirana.jpg') center/cover no-repeat;
       color: #fff;
       padding: 80px 0 60px 0;
       position: relative;
@@ -127,6 +127,32 @@
       transition: background-color 0.3s, color 0.3s, transform 0.3s;
       display: inline-block;
       margin-top: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+      );
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+    @keyframes shine {
+      0% {
+          left: -50%;
+      }
+      100% {
+          left: 150%;
+      }
     }
     .cta-button:hover {
       background: #ffb700;
@@ -231,30 +257,35 @@
     .testimonials-section {
       background: #f6f7fb;
       border-radius: 16px;
+      overflow: hidden;
+      padding: 20px;
+      position: relative;
     }
+
+    .testimonial-container {
+      display: flex;
+      width: max-content;
+      animation: marquee 30s linear infinite;
+      gap: 32px;
+    }
+
     .testimonial {
-      margin: 28px auto;
-      max-width: 600px;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s, transform 0.7s;
+      width: 300px;
+      flex-shrink: 0;
+      padding: 20px;
     }
-    .testimonial.visible {
-      opacity: 1;
-      transform: translateY(0);
-      animation: fadeInUp 0.8s;
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-300px * 4 - 32px * 4));
+      }
     }
-    .testimonial blockquote {
-      font-size: 1.1rem;
-      color: #333;
-      font-style: italic;
-      margin-bottom: 10px;
-    }
-    .testimonial h4 {
-      margin: 0;
-      color: #2c3e50;
-      font-weight: 600;
+
+    .testimonial-container:hover {
+      animation-play-state: paused;
     }
     /* Team */
     .team-grid {
@@ -397,6 +428,10 @@
       --nav-link-hover: #ffffff;
       --cta-button-bg: #f0c419;
       --cta-button-text: #1a1a1a;
+      --testimonial-bg: #2a2a2a;
+      --testimonial-text: #e0e0e0;
+      --product-title: #f0c419;
+      --product-text: #e0e0e0;
     }
     .dark-mode .logo {
       color: #f0c419;
@@ -424,6 +459,24 @@
     .dark-mode h2, .dark-mode .team-member h3 {
       color: #f0c419;
     }
+    .dark-mode .testimonials-section {
+      background: var(--testimonial-bg);
+    }
+    .dark-mode .testimonial blockquote {
+      color: var(--testimonial-text);
+    }
+    .dark-mode .testimonial h4 {
+      color: #f0c419;
+    }
+    .dark-mode .product-card h3 {
+      color: var(--product-title);
+    }
+    .dark-mode .product-card p {
+      color: var(--product-text);
+    }
+    .dark-mode .team-member p {
+      color: #f0c419;
+    }
   </style>
 </head>
 
@@ -432,11 +485,11 @@
     <nav class="navbar">
       <div class="logo">Nakoda</div>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
         <li><a href="#products">Products</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#team">Team</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <button class="dark-mode-toggle" id="darkModeBtn" aria-label="Toggle dark mode">🌙</button>
@@ -448,44 +501,36 @@
     </div>
   </header>
 
-  <section id="about" class="section">
-    <div class="section-content">
-      <h2>About Us</h2>
-      <p>Located in Bicholi Mardana, Nakoda Kirana is your neighborhood store delivering high-quality groceries with a personal touch. Serving the community for over 10 years, we specialize in a wide range of household essentials, fresh produce, and organic items.</p>
-      <p>Our mission is to provide the best in quality and convenience while supporting local farmers and brands.</p>
-    </div>
-  </section>
-
   <section id="products" class="section">
     <h2>Our Top Products</h2>
     <div class="product-grid">
       <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" alt="Rice">
+        <img src="https://www.hamiast.com/cdn/shop/files/Authentic_Jammu_R.S._Pura_Basmati_Rice_Aromatic_Bliss_-_Hamiast-51786_840x.jpg?v=1740486658" alt="Rice">
         <h3>Premium Basmati Rice</h3>
         <p>5kg pack - ₹480</p>
       </div>
       <div class="product-card">
-        <img src="https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=400&q=80" alt="Wheat">
+        <img src="https://down-ph.img.susercontent.com/file/8026833c004ec3654bf550016f6c2e24" alt="Wheat">
         <h3>Fresh Chakki Atta</h3>
         <p>10kg pack - ₹420</p>
       </div>
       <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Spices">
+        <img src="https://content.jdmagicbox.com/comp/def_content/spice-retailers/shutterstock-1148762462-spice-retailers-14-5egjn.jpg" alt="Spices">
         <h3>Indian Spices</h3>
         <p>Assorted - ₹99 each</p>
       </div>
       <div class="product-card">
-        <img src="https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=400&q=80" alt="Snacks">
+        <img src="https://images.onlymyhealth.com/imported/images/2022/December/09_Dec_2022/main_Healthysnack.jpg" alt="Snacks">
         <h3>Healthy Snacks</h3>
         <p>From ₹50</p>
       </div>
       <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Veggies">
+        <img src="https://images.jdmagicbox.com/v2/comp/lucknow/l4/0522px522.x522.220329213215.r9l4/catalogue/sunday-vegetable-market-gomti-nagar-lucknow-vegetable-vendors-ahc50osTj5.jpg" alt="Veggies">
         <h3>Fresh Vegetables</h3>
         <p>Locally sourced daily</p>
       </div>
       <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" alt="Cooking Oil">
+        <img src="https://salescabal.s3.eu-west-3.amazonaws.com/stores/111940/products/38db5c7c1b0b7a1c3889e96ad5a13684a6d7669f.jpeg" alt="Cooking Oil">
         <h3>Sunflower Oil</h3>
         <p>1L bottle - ₹150</p>
       </div>
@@ -495,22 +540,49 @@
   <section id="gallery" class="section gallery-section">
     <h2>Store Gallery</h2>
     <div class="gallery-grid">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80" alt="Store Front">
-      <img src="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&w=400&q=80" alt="Interior">
-      <img src="https://images.unsplash.com/photo-1604152135912-04a022b7b4ec?auto=format&fit=crop&w=400&q=80" alt="Packaging">
-      <img src="https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=400&q=80" alt="Fruits">
+      <img src="https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2024-12/kirana.jpg" alt="Store Front">
+      <img src="https://www.instorindia.com/wp-content/uploads/2019/11/IMG_9988-min-scaled.jpg" alt="Interior">
+      <img src="https://5.imimg.com/data5/IOS/Default/2021/7/BO/CN/QU/23928856/product-jpeg-500x500.png" alt="Packaging">
+      <img src="https://www.foodrepublic.com/img/gallery/the-difference-between-modern-grocery-stores-and-supermarkets/food-prices-vary-widely-among-grocery-stores-1704834105.jpg" alt="Fruits">
     </div>
   </section>
 
   <section id="testimonials" class="section testimonials-section">
     <h2>What Our Customers Say</h2>
-    <div class="testimonial">
-      <blockquote>"Friendly staff and top-notch quality! I always shop here for my daily needs."</blockquote>
-      <h4>- Meena G., Local Resident</h4>
-    </div>
-    <div class="testimonial">
-      <blockquote>"Their delivery is super quick and reliable. Nakoda Kirana saves me so much time!"</blockquote>
-      <h4>- Rajesh T., Software Engineer</h4>
+    <div class="testimonial-container">
+      <div class="testimonial">
+        <blockquote>"Friendly staff and top-notch quality! I always shop here for my daily needs."</blockquote>
+        <h4>- Meena G., Local Resident</h4>
+      </div>
+      <div class="testimonial">
+        <blockquote>"Their delivery is super quick and reliable. Nakoda Kirana saves me so much time!"</blockquote>
+        <h4>- Rajesh T., Software Engineer</h4>
+      </div>
+      <div class="testimonial">
+        <blockquote>"I love their fresh produce and organic options. Best kirana store in Indore!"</blockquote>
+        <h4>- Priya S., Health Enthusiast</h4>
+      </div>
+      <div class="testimonial">
+        <blockquote>"Nakoda Kirana has been my go-to store for years. Great prices and service!"</blockquote>
+        <h4>- Anil M., Retired Teacher</h4>
+      </div>
+      <!-- Duplicate testimonials for smooth loop -->
+      <div class="testimonial">
+        <blockquote>"Friendly staff and top-notch quality! I always shop here for my daily needs."</blockquote>
+        <h4>- Meena G., Local Resident</h4>
+      </div>
+      <div class="testimonial">
+        <blockquote>"Their delivery is super quick and reliable. Nakoda Kirana saves me so much time!"</blockquote>
+        <h4>- Rajesh T., Software Engineer</h4>
+      </div>
+      <div class="testimonial">
+        <blockquote>"I love their fresh produce and organic options. Best kirana store in Indore!"</blockquote>
+        <h4>- Priya S., Health Enthusiast</h4>
+      </div>
+      <div class="testimonial">
+        <blockquote>"Nakoda Kirana has been my go-to store for years. Great prices and service!"</blockquote>
+        <h4>- Anil M., Retired Teacher</h4>
+      </div>
     </div>
   </section>
 
@@ -529,6 +601,14 @@
         <h3>Sunil</h3>
         <p>Delivery Executive</p>
       </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="section-content">
+      <h2>About Us</h2>
+      <p>Located in Bicholi Mardana, Nakoda Kirana is your neighborhood store delivering high-quality groceries with a personal touch. Serving the community for over 10 years, we specialize in a wide range of household essentials, fresh produce, and organic items.</p>
+      <p>Our mission is to provide the best in quality and convenience while supporting local farmers and brands.</p>
     </div>
   </section>
 
